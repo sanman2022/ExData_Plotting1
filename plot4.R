@@ -11,7 +11,7 @@ download.file(fileURL,destfile = "./data/Project1.zip", mode="wb");
 unzip("data/Project1.zip", exdir="data");
 
 # Read the data
-elec=read.table("data/household_power_consumption.txt", header = TRUE, sep=";", stringsAsFactors = FALSE) ;
+elec=read.table("data/household_power_consumption.txt", header = TRUE, na.strings = "?", sep=";", stringsAsFactors = FALSE) ;
 # Convert the dates to date format
 elec$Date=as.Date(elec$Date, "%d/%m/%Y");
 # Subset the data
@@ -33,7 +33,7 @@ with(mydata, plot(Global_active_power~DateTime, type="n", ylab= expression(bold(
 lines(mydata$Global_active_power ~mydata$DateTime, lwd=2);
 
 #Plot #2
-with(mydata, plot(Voltage~DateTime, type="n"));
+with(mydata, plot(Voltage~DateTime, type="n", xlab="datetime"));
 lines(mydata$Voltage ~mydata$DateTime, lwd=2);
 
 # Plot #3
@@ -44,7 +44,7 @@ lines(mydata$Sub_metering_3 ~mydata$DateTime, col="blue", lwd=2);
 legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), col=c("black","red", "blue" ), lty=1, lwd=2, cex=0.6);
 
 #Plot #4
-with(mydata, plot(Global_reactive_power~DateTime, type="n"));
+with(mydata, plot(Global_reactive_power~DateTime, type="n", xlab="datetime"));
 lines(mydata$Global_reactive_power ~mydata$DateTime, lwd=2);
 
 # close the device

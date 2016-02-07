@@ -11,7 +11,7 @@ download.file(fileURL,destfile = "./data/Project1.zip", mode="wb");
 unzip("data/Project1.zip", exdir="data");
 
 # Read the data
-elec=read.table("data/household_power_consumption.txt", header = TRUE, sep=";", stringsAsFactors = FALSE) ;
+elec=read.table("data/household_power_consumption.txt", header = TRUE, na.strings = "?", sep=";", stringsAsFactors = FALSE) ;
 # Convert the dates to date format
 elec$Date=as.Date(elec$Date, "%d/%m/%Y");
 # Subset the data
